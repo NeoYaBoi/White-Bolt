@@ -4,6 +4,7 @@ import { ApplicationCommandOptionTypes } from 'discord.js/typings/enums'
 const serverSchema = require('../../schemas/serverSchema')
 const anime = require('anime-images-api')
 const API = new anime()
+//COMMAND DOES NOT WORK ON SLOW COMPUTERS DUE TO TIMOUTS
 
 export default {
     name: 'anime',
@@ -68,11 +69,6 @@ export default {
 
         let content = interaction.options.getString('verb')
         let whosEyes = interaction.options.getString('these-eyes')
-        if(whosEyes == "YES") {
-            await interaction.deferReply({ephemeral: true})
-        } else {
-            await interaction.deferReply()
-        }
         let image
 
         if(content == "HUG") {
@@ -95,8 +91,7 @@ export default {
             }
         } else {
             return interaction.reply({
-                content: "This is not a NSFW channel or the owner has disabled NSFW content.",
-                ephemeral: true
+                content: "This is not a NSFW channel or the owner has disabled NSFW content."
             })
         }
         const embed = new MessageEmbed()
@@ -104,8 +99,16 @@ export default {
         .setColor("WHITE")
         .setImage(image.image)
 
-        interaction.editReply({
-            embeds: [embed],
+        if(whosEyes == "yes") {
+            return interaction.reply({
+                embeds: [embed],
+                ephemeral: true
+            })
+        }
+
+        return interaction.reply({
+            embeds: [embed]
         })
+        
     },
 } as ICommand
