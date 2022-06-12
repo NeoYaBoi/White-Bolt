@@ -12,27 +12,36 @@ const client = new DiscordJS.Client({
     ]
 })
 
+
 client.on('ready', () => {
-    client.on('ready', () => {
-        const dbOptions = {
-            keepAlive: true
-        }
-
-        new WOKCommands(client, {
-            commandsDir: path.join(__dirname, 'commands'),
-            typeScript: true,
-            testServers: ['984917713224859699'],
-            mongoUri: process.env.MONGO
-        })
-            .setBotOwner(['555991737072615424'])
-            .setCategorySettings([
-                {
-                    name: "Utility",
-                    emoji: '🔨'
-                }
-            ])
+    new WOKCommands(client, {
+        commandsDir: path.join(__dirname, 'commands'),
+        typeScript: true,
+        testServers: ['984917713224859699'],
+        mongoUri: process.env.MONGO,
+        disabledDefaultCommands: [
+            // 'help',
+            // 'command',
+            // 'language',
+            // 'prefix',
+            // 'requiredrole'
+            'slash',
+        ],
+        
     })
-
+        .setBotOwner(['555991737072615424'])
+        .setCategorySettings([
+            {
+                name: "Utility",
+                emoji: '🔨'
+            }, {
+                name: "Fun",
+                emoji: '🎉'
+            }
+        ])
+        .setDefaultPrefix('%')
+        .setColor("WHITE")
+        
 })
 
 client.login(process.env.TOKEN)

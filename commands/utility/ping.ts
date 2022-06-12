@@ -4,9 +4,7 @@ export default {
     category: "Utility",
     description: "Replies with pong.",
 
-    slash: true,
-    testOnly: true,
-
+    slash: 'both',
     callback: ({}) => {
         return 'Pong'
     }

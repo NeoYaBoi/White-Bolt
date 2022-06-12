@@ -1,0 +1,23 @@
+import { ICommand } from 'wokcommands'
+import { MessageEmbed } from 'discord.js'
+import { ApplicationCommandOptionTypes } from 'discord.js/typings/enums'
+import DJS from 'discord.js'
+
+export default {
+    name: '',
+    names: [],
+    category: '',
+    description: '',
+    expectedArgs: '',
+    minArgs: (num),
+    maxArgs: (num),
+    slash: (true/false),
+    testOnly: (true/false),
+    permissions: [],
+    options: [],
+
+    callback: ({ interaction }) => {
+
+       
+    },
+} as ICommand
