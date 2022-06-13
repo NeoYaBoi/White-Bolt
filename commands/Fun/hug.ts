@@ -1,13 +1,11 @@
 import { ICommand } from 'wokcommands'
-import { Message, MessageEmbed } from 'discord.js'
+import { MessageEmbed } from 'discord.js'
 import { ApplicationCommandOptionTypes } from 'discord.js/typings/enums'
-import { Mongoose } from 'mongoose'
 const serverSchema = require('../../schemas/serverSchema')
 const anime = require('anime-images-api')
 const API = new anime()
 
 export default {
-    name: 'hug',
     names: ['hug', 'cuddle'],
     category: 'Fun',
     description: 'Hugs any specified user',
@@ -22,7 +20,7 @@ export default {
         type: ApplicationCommandOptionTypes.USER
     }],
 
-    callback: async ({ interaction, text, args, member, guild}) => {
+    callback: async ({ interaction, message, args, member, guild}) => {
         const check = await serverSchema.findOne({
             _id: guild?.id
         })

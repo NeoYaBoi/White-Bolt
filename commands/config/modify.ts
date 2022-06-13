@@ -6,14 +6,14 @@ const serverSchema = require("../../schemas/serverSchema");
 export default {
   name: "modify",
   names: ["modify", "settings"],
-  category: "Utility",
+  category: "Configuration",
   description:
     "Enabled you to change setttings in the bot for your server (SLASH ONLY)",
   expectedArgs: "<change> <on/off>",
   minArgs: 2,
   slash: "both",
-  testOnly: true,
   permissions: ["ADMINISTRATOR"],
+  guildOnly: true,
   options: [
     {
       name: "setting",

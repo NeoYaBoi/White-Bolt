@@ -1,7 +1,6 @@
 import { ICommand } from 'wokcommands'
 import { MessageEmbed } from 'discord.js'
 import { ApplicationCommandOptionTypes } from 'discord.js/typings/enums'
-import DJS from 'discord.js'
 
 export default {
     name: '',
