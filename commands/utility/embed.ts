@@ -73,7 +73,7 @@ export default {
     },
   ],
 
-  callback: ({ interaction, message, args, prefix }) => {
+  callback: ({ interaction, message, args, prefix, channel }) => {
     if (interaction) {
       let content = interaction.options.getString("content")!;
       let title = interaction.options.getString("title")!;
@@ -101,13 +101,17 @@ export default {
       } else if (color == "RANDOM") {
         embed.setColor("RANDOM");
       }
-      return embed;
+      interaction.reply({ content: "Embed Loading..." });
+      setTimeout(() => {
+        interaction.deleteReply();
+        channel.send({ embeds: [embed] });
+      }, 1000);
     } else {
-      const cheese = message.content.replace(`${prefix}embed ${args[0]}`, ``);
+      const content = message.content.replace(`${prefix}embed ${args[0]}`, ``);
       const embed = new MessageEmbed()
         .setTitle(args[0])
         .setColor("WHITE")
-        .setDescription(cheese);
+        .setDescription(content);
       message.channel.send({ embeds: [embed] });
     }
   },

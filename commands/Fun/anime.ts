@@ -4,7 +4,6 @@ import { ApplicationCommandOptionTypes } from "discord.js/typings/enums";
 const serverSchema = require("../../schemas/serverSchema");
 const anime = require("anime-images-api");
 const API = new anime();
-//COMMAND DOES NOT WORK ON SLOW COMPUTERS DUE TO TIMOUTS
 
 export default {
   name: "anime",
@@ -14,6 +13,7 @@ export default {
   minArgs: 1,
   slash: "both",
   guildOnly: true,
+  cooldown: '5s',
   options: [
     {
       name: "verb",
@@ -56,17 +56,17 @@ export default {
       ],
     },
     {
-      name: "these-eyes",
+      name: "hidden",
       description: "Makes it so only you can see the gif.",
       type: ApplicationCommandOptionTypes.STRING,
       required: false,
       choices: [
         {
-          name: "Yes",
+          name: "True",
           value: "YES",
         },
         {
-          name: "No",
+          name: "False",
           value: "NO",
         },
       ],
@@ -84,7 +84,12 @@ export default {
       return "The owner of this server has disabled anime";
 
     let content = interaction.options.getString("verb");
-    let whosEyes = interaction.options.getString("these-eyes");
+    let whosEyes = interaction.options.getString("hidden");
+    if (whosEyes == "YES") {
+      await interaction.deferReply({ephemeral: true});
+    } else {
+      await interaction.deferReply();
+    }
     let image;
 
     if (content == "HUG") {
@@ -113,10 +118,9 @@ export default {
             "https://cdn.discordapp.com/attachments/985350444626882590/985350958928257085/unknown.png";
         }
       } else {
-        return interaction.reply({
+        return await interaction.editReply({
           content:
             "Either this isn't a NSFW channel or the owner has disabled NSFW content",
-          ephemeral: true,
         });
       }
     }
@@ -125,15 +129,12 @@ export default {
       .setColor("WHITE")
       .setImage(image.image || image);
 
-    if (whosEyes == "YES") {
-      return interaction.reply({
+    try {
+      await interaction.editReply({
         embeds: [embed],
-        ephemeral: true,
       });
+    } catch {
+      console.log("Error");
     }
-
-    return interaction.reply({
-      embeds: [embed],
-    });
   },
 } as ICommand;

@@ -7,7 +7,7 @@ const API = new anime();
 
 export default {
   name: "kill",
-  names: ["kill", "murder"],
+  aliases: ["kill", "murder"],
   category: "Fun",
   description: "Kills a specified user",
   expectedArgs: "<user>",
@@ -31,28 +31,14 @@ export default {
       image =
         "https://cdn.discordapp.com/attachments/985350444626882590/985350958928257085/unknown.png";
     }
-    if (interaction) {
-      const targetMember = interaction.options.getUser("user")!;
-      const embed = new MessageEmbed().setColor("WHITE").setThumbnail(image)
+    let user = message ? args[0] : `<@${interaction.options.getUser('user')?.id}>`
+    const embed = new MessageEmbed().setColor("WHITE").setThumbnail(image)
         .setDescription(`
             <@${member.id}>
             
             ***KILLS***
             
-            <@${targetMember.id}>`);
+            ${user}`);
       return embed;
-    } else {
-      if (!args[0].startsWith("<@") && !args[0].startsWith("!"))
-        return "You must specify someone to kill";
-      if (!args[0].endsWith(">")) return "You must specify someone to kill";
-      const embed = new MessageEmbed().setColor("WHITE").setThumbnail(image)
-        .setDescription(`
-            <@${member.id}>
-            
-            ***KILLS***
-            
-            ${args[0]}`);
-      return embed;
-    }
   },
 } as ICommand;

@@ -7,7 +7,7 @@ const API = new anime();
 
 export default {
   name: "kiss",
-  names: ["kiss", "smooch"],
+  aliases: ["kiss", "smooch"],
   category: "Fun",
   description: "Kisses any specified user",
   expectedArgs: "<user>",

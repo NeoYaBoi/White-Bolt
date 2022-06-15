@@ -12,6 +12,14 @@ const userSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
+  money: {
+    type: Number,
+    required: true
+  },
+  xp: {
+    type: Number,
+    required: true
+  }
 });
 
 module.exports = mongoose.model("Users", userSchema);

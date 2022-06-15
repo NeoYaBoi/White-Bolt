@@ -2,7 +2,7 @@ import DiscordJS, { Intents } from "discord.js";
 import WOKCommands from "wokcommands";
 import path from "path";
 import dotenv from "dotenv";
-const { version } = require("./package.json")
+const { version } = require("./package.json");
 dotenv.config();
 
 console.log(`
@@ -12,7 +12,7 @@ console.log(`
 #                                 #
 #              ${version}              #
 #                                 #
-###################################`)
+###################################`);
 
 const client = new DiscordJS.Client({
   intents: [
@@ -25,6 +25,7 @@ const client = new DiscordJS.Client({
 client.on("ready", () => {
   new WOKCommands(client, {
     commandsDir: path.join(__dirname, "commands"),
+    messagesPath: path.join(__dirname, "messages.json"),
     typeScript: true,
     testServers: ["984917713224859699"],
     mongoUri: process.env.MONGO,
@@ -47,12 +48,29 @@ client.on("ready", () => {
         emoji: "🎉",
       },
       {
+        name: "Economy",
+        emoji: "🪙",
+      },
+      {
+        name: "Owner",
+        emoji: "💀",
+        hidden: true,
+      },
+      {
         name: "Staff",
         emoji: "<:SEVE:985474827647352852>",
-        hidden: true
-      }
+        hidden: true,
+      },
     ])
     .setDefaultPrefix("%")
     .setColor("WHITE");
+  client.user?.setPresence({
+    status: "online",
+    activities: [
+      {
+        name: 'Undergoing ALPHA testing',
+      },
+    ],
+  });
 });
 client.login(process.env.TOKEN);

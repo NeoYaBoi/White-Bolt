@@ -12,6 +12,7 @@ export default {
   minArgs: 1,
   slash: "both",
   testOnly: true,
+  hidden: true,
   permissions: ["KICK_MEMBERS"],
   requireRoles: true,
   options: [

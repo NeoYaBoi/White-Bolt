@@ -6,7 +6,8 @@ const anime = require('anime-images-api')
 const API = new anime()
 
 export default {
-    names: ['hug', 'cuddle'],
+    name: 'hug',
+    aliases: ["hug", "cuddle"],
     category: 'Fun',
     description: 'Hugs any specified user',
     expectedArgs: '<user>',
