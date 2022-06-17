@@ -14,6 +14,7 @@ export default {
     minArgs: 1,
     slash: 'both',
     guildOnly: true,
+    cooldown: '5s',
     options: [{
         name: 'user',
         description: 'A user to hug',

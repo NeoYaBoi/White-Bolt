@@ -3,6 +3,12 @@ import WOKCommands from "wokcommands";
 import path from "path";
 import dotenv from "dotenv";
 const { version } = require("./package.json");
+let activities_list = [
+  "with Black Bolt",
+  "with your mother",
+  "with Neo",
+  `running version ${version}`,
+];
 dotenv.config();
 
 console.log(`
@@ -64,13 +70,34 @@ client.on("ready", () => {
     ])
     .setDefaultPrefix("%")
     .setColor("WHITE");
-  client.user?.setPresence({
-    status: "online",
-    activities: [
-      {
-        name: 'Undergoing ALPHA testing',
-      },
-    ],
-  });
+  setInterval(() => {
+    const indexStat = Math.floor(
+      Math.random() * (activities_list.length - 1) + 1
+    );
+    let Set = activities_list[indexStat]
+    client.user?.setPresence({
+      status: "online",
+      activities: [{ name: Set }],
+    });
+    console.clear()
+    console.log(`
+###################################
+#                                 #
+#           BLACK BOLT            #
+#                                 #
+#              ${version}              #
+#                                 #
+###################################`);
+    console.log(`
+===================================
+        The Current Status Is`);
+
+    console.log(
+      "\x1b[36m%s\x1b[0m",
+      `
+        "${Set}"`
+    );
+    console.log(`===================================`);
+  }, 10000);
 });
 client.login(process.env.TOKEN);

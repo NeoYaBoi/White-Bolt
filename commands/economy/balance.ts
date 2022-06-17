@@ -10,6 +10,7 @@ export default {
   category: "Economy",
   description: "Checks your balance",
   expectedArgs: "<user>",
+  guildOnly: true,
   slash: "both",
   options: [
     {

@@ -8,7 +8,8 @@ export default {
     description: 'Returns the avatar of a specified user',
     expectedArgs: '<user>',
     slash: 'both',
-    testOnly: true,
+    guildOnly: true,
+    cooldown: '5s',
     options: [{
         name: "user",
         description: "The user who's avatar you would like to see",

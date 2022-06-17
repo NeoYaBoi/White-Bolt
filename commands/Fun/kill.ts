@@ -13,6 +13,8 @@ export default {
   expectedArgs: "<user>",
   minArgs: 1,
   slash: "both",
+  cooldown: '5s',
+  guildOnly: true,
   options: [
     {
       name: "user",

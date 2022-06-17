@@ -10,6 +10,7 @@ export default {
   description: "Bets money",
   expectedArgs: "<amount>",
   minArgs: 1,
+  guildOnly: true,
   slash: "both",
   expectedArgsTypes: ["NUMBER"],
   callback: async ({

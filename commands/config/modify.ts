@@ -8,7 +8,7 @@ export default {
   names: ["modify", "settings"],
   category: "Configuration",
   description:
-    "Enabled you to change setttings in the bot for your server (SLASH ONLY)",
+    "Enabled you to change settings in the bot for your server (SLASH ONLY)",
   expectedArgs: "<change> <on/off>",
   minArgs: 2,
   slash: "both",

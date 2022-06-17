@@ -9,6 +9,7 @@ export default {
   expectedArgs: "<title> <embed>",
   minArgs: 2,
   slash: "both",
+  guildOnly: true,
   permissions: ["ADMINISTRATOR"],
   options: [
     {

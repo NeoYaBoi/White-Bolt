@@ -11,7 +11,7 @@ export default {
   expectedArgs: "<user> <reason>",
   minArgs: 1,
   slash: "both",
-  testOnly: true,
+  guildOnly: true,
   hidden: true,
   permissions: ["KICK_MEMBERS"],
   requireRoles: true,
