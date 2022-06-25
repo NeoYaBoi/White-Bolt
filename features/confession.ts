@@ -1,7 +1,7 @@
 import { Client, MessageEmbed, TextChannel } from "discord.js";
 const serverSchema = require("../schemas/confessionGuildSchema");
 const confessionSchema = require("../schemas/confessionSchema");
-const checker = require("../schemas/serverSchema")
+const toggler = require("../schemas/serverSchema")
 export default (client: Client) => {
   client.on("message", async (message) => {
     if (message.guild == null) return;
@@ -12,8 +12,9 @@ export default (client: Client) => {
       });
       if (!serverResult || !serverResult.confessHere) return;
       if (message.channel.id != serverResult.confessHere) return;
+      const checker = await toggler.findOne({_id: message?.guild?.id})
       if(checker) {
-        if(checker.confessionToggle == "false") return
+        if(checker.confessionToggle == "false") return;
       }
       if (message.deletable) {
         message.delete();

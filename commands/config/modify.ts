@@ -118,6 +118,7 @@ export default {
         {
           upsert: true
         });
+      content = `The confession toggle is now set to ${toggle}`
     }
     return content;
   },
