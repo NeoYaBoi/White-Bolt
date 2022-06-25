@@ -7,7 +7,7 @@ const warnSchema = require("../../schemas/warnSchema");
 export default {
   name: "warn",
   category: "Staff",
-  description: "Warns a specified user (SLASH ONLY)",
+  description: "Warns a specified user (SOC)",
   expectedArgs: "<user> <reason>",
   minArgs: 1,
   slash: "both",
@@ -30,8 +30,14 @@ export default {
     },
   ],
   callback: async ({ interaction, message, guild }) => {
-    if (message) return "This is a slash command only";
-    if(guild?.id != "804323987106168842" && guild?.id != "984917713224859699") return "Currently this command is unavailable"
+    if (message)
+      return {
+        custom: true,
+        content: "This is a slash only command",
+        ephemeral: true,
+      };
+    if (guild?.id != "804323987106168842" && guild?.id != "984917713224859699")
+      return "Currently this command is unavailable";
 
     const user = interaction.options.getUser("user")!;
     const reason =
@@ -76,7 +82,7 @@ export default {
         time: time,
         moderator: interaction.member?.user.username,
         warnNumber: toSet,
-        user: user.id
+        user: user.id,
       },
       {
         upsert: true,

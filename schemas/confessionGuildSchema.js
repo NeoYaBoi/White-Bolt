@@ -8,18 +8,16 @@ const serverSchema = mongoose.Schema({
   _id: {
     reqString
   }, 
-  animeToggle: {
-    reqString,
+  confessions: {
+    type: Number,
+    required: true
   },
-  nsfwToggle: {
-    reqString,
-  },
-  confessionToggle: {
+  confessHere: {
     reqString
   },
-  welcomeToggle: {
+  confessSend: {
     reqString
   }
 });
 
-module.exports = mongoose.model("Server", serverSchema);
+module.exports = mongoose.model("guildConfession", serverSchema);

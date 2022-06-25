@@ -25,6 +25,7 @@ const client = new DiscordJS.Client({
     Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MESSAGES,
     Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+    Intents.FLAGS.GUILD_MEMBERS
   ],
 });
 
@@ -32,6 +33,7 @@ client.on("ready", () => {
   new WOKCommands(client, {
     commandsDir: path.join(__dirname, "commands"),
     messagesPath: path.join(__dirname, "messages.json"),
+    featuresDir: path.join(__dirname, 'features'),
     typeScript: true,
     testServers: ["984917713224859699"],
     mongoUri: process.env.MONGO,

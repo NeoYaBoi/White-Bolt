@@ -21,7 +21,7 @@ export default {
   callback: async ({ member, instance, guild }) => {
     let ranBeg = Math.floor(Math.random() * begOp.length);
     const userResult = await userSchema.findOne({ _id: member.id });
-    const amount = Math.floor(Math.random() * 10000) + 1;
+    const amount = Math.floor(Math.random() * 5000) + 1;
     let toSet;
     if (!userResult || !userResult.money) {
       toSet = amount + 1000;

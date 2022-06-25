@@ -8,12 +8,12 @@ const API = new anime();
 export default {
   name: "anime",
   category: "Fun",
-  description: "Gives a anime gif of your choice (SLASH ONLY)",
+  description: "Gives a anime gif of your choice (SOC) (LRT)",
   expectedArgs: "<anime verb>",
   minArgs: 1,
   slash: "both",
   guildOnly: true,
-  cooldown: '5s',
+  cooldown: "5s",
   options: [
     {
       name: "verb",
@@ -74,7 +74,12 @@ export default {
   ],
 
   callback: async ({ interaction, message, guild, channel, member }) => {
-    if (message) return "This is a slash command only.";
+    if (message)
+      return {
+        custom: true,
+        content: "This is a slash only command",
+        ephemeral: true,
+      };
 
     const check = await serverSchema.findOne({
       _id: guild?.id,
@@ -86,7 +91,7 @@ export default {
     let content = interaction.options.getString("verb");
     let whosEyes = interaction.options.getString("hidden");
     if (whosEyes == "YES") {
-      await interaction.deferReply({ephemeral: true});
+      await interaction.deferReply({ ephemeral: true });
     } else {
       await interaction.deferReply();
     }

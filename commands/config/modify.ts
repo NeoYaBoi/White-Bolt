@@ -8,7 +8,7 @@ export default {
   names: ["modify", "settings"],
   category: "Configuration",
   description:
-    "Enabled you to change settings in the bot for your server (SLASH ONLY)",
+    "Enabled you to change settings in the bot for your server (SOC)",
   expectedArgs: "<change> <on/off>",
   minArgs: 2,
   slash: "both",
@@ -29,6 +29,14 @@ export default {
           name: "NSFW",
           value: "NSFW",
         },
+        {
+          name: "Welcome",
+          value: "WELCOME",
+        },
+        {
+          name: "Confessions",
+          value: "CONFESSIONS",
+        },
       ],
     },
     {
@@ -48,8 +56,13 @@ export default {
       ],
     },
   ],
-  callback: async ({ interaction, message, guild }) => {
-    if (message) return "This is a slash command only";
+  callback: async ({ interaction, message, guild, prefix }) => {
+    if (message)
+      return {
+        custom: true,
+        content: "This is a slash only command",
+        ephemeral: true,
+      };
     let setting = interaction.options.getString("setting");
     let toggle = interaction.options.getString("toggle");
     const serverResult = await serverSchema.findOne({ _id: guild?.id });
@@ -81,8 +94,31 @@ export default {
         }
       );
       content = `The NSFW toggle is now set to ${toggle}`;
+    } else if (setting == "WELCOME") {
+      await serverSchema.findOneAndUpdate(
+        {
+          _id: guild?.id,
+        },
+        {
+          welcomeToggle: toggle,
+        },
+        {
+          upsert: true,
+        }
+      );
+      content = `The welcome toggle is now set to ${toggle}`;
+    } else if (setting == "CONFESSIONS") {
+      await serverSchema.findOneAndUpdate(
+        {
+          _id: guild?.id
+        },
+        {
+          confessionToggle: toggle
+        }, 
+        {
+          upsert: true
+        });
     }
-
     return content;
   },
 } as ICommand;

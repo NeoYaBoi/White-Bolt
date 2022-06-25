@@ -430,5 +430,17 @@
         "french": "Syntaxe",
         "neo": "Sintax"
       }
+    },
+    "ABBREVIATIONS_HELP_MENU": {
+      "DESCRIPTION": {
+        "english": "This menu lists the abbreviations listed in the help menu.",
+        "spanish": "Este menú enumera las abreviaturas enumeradas en el menú de ayuda.",
+        "portuguese": "Este menu lista as abreviaturas listadas no menu de ajuda.",
+        "russian": "В этом меню перечислены сокращения, перечисленные в меню справки.",
+        "german": "Dieses Menü listet die im Hilfemenü aufgeführten Abkürzungen auf.",
+        "dutch": "In dit menu staan de afkortingen vermeld in het helpmenu.",
+        "french": "Ce menu liste les abréviations listées dans le menu d'aide.",
+        "neo": "Htis menyou lists hte abrevations listed in hte help menyou."
+      }
     }
   }

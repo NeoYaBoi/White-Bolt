@@ -19,7 +19,11 @@ const userSchema = mongoose.Schema({
   xp: {
     type: Number,
     required: true
-  }
+  },
+  level: {
+    type: Number,
+    required: true
+  },
 });
 
 module.exports = mongoose.model("Users", userSchema);
