@@ -6,7 +6,7 @@ const userSchema = require("../../schemas/userSchema");
 
 export default {
   name: "balance",
-  aliases: ["balance", "bal"],
+  aliases: ["balance", "bal", 'b'],
   category: "Economy",
   description: "Checks your balance",
   expectedArgs: "<user>",
