@@ -21,9 +21,12 @@ const userSchema = mongoose.Schema({
     required: true
   },
   level: {
-    type: Number,
+    type: Number, 
     required: true
   },
+  levelbadge: {
+    reqString
+  }
 });
 
 module.exports = mongoose.model("Users", userSchema);

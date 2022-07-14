@@ -6,7 +6,6 @@ import {
 } from "discord.js/typings/enums";
 const itemSchema = require("../../schemas/itemSchema");
 const userSchema = require("../../schemas/userSchema");
-const testing = require("../../testin")
 
 export default {
   name: "buy",
@@ -31,6 +30,7 @@ export default {
     },
   ],
   callback: async ({ interaction, message, member }) => {
+    return "This command is currently unavailable"
     if (message) {
       return {
         custom: true,
@@ -43,10 +43,15 @@ export default {
     if (!userResult || !userResult.money) {
       return {
         custom: true,
-        content: "You do not have enough money.",
+        content: "You do not have any money.",
         ephemeral: true,
       };
     }
+
+    if(item == "test") {
+
+    }
+
     let embed = new MessageEmbed()
       .setAuthor(`${member.displayName} | Item`)
       .setColor("WHITE");

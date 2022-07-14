@@ -35,7 +35,7 @@ client.on("ready", () => {
     messagesPath: path.join(__dirname, "messages.json"),
     featuresDir: path.join(__dirname, 'features'),
     typeScript: true,
-    testServers: ["984917713224859699"],
+    testServers: ["995514550227046452"],
     mongoUri: process.env.MONGO,
     disabledDefaultCommands: [
       // 'help',
@@ -45,7 +45,7 @@ client.on("ready", () => {
       //"requiredrole",
     ],
   })
-    .setBotOwner(["555991737072615424"])
+    .setBotOwner(["762918086349029386"])
     .setCategorySettings([
       {
         name: "Utility",

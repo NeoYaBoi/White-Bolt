@@ -19,6 +19,7 @@ export default {
             name: "SOC",
             value: "Slash Only Command"
         })
+        .setColor("WHITE")
         return embed
     },
 } as ICommand
