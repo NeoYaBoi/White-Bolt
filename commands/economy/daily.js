@@ -28,7 +28,6 @@ exports.default = {
     description: `Gets your daily amount of ${config_json_1.currency}`,
     slash: "both",
     guildOnly: true,
-    testOnly: true,
     cooldown: "1d",
     callback: ({ interaction, message, member }) => __awaiter(void 0, void 0, void 0, function* () {
         let ranBeg = Math.floor(Math.random() * dailySays.length);

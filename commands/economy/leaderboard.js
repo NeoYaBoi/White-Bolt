@@ -9,7 +9,6 @@ exports.default = {
     category: 'Economy',
     description: 'Shows the current leaderboard',
     slash: 'both',
-    testOnly: true,
     callback: ({ interaction, message, member }) => {
         return "This command will be available within a few days of White Bolts release";
         //Getting users with highest amount of money

@@ -109,7 +109,7 @@ client.on("ready", () => {
         console.log(`
 ###################################
 #                                 #
-#           BLACK BOLT            #
+#           WHITE BOLT            #
 #                                 #
 #              ${version}              #
 #                                 #

@@ -5,5 +5,22 @@
             "name": "testing",
             "description": "reee"
         }
+    },
+    "levels": {
+        "one": {
+            "price": 100000
+        },
+        "two": {
+            "price": 500000
+        },
+        "three": {
+            "price": 1000000
+        },
+        "four": {
+            "price": 5000000
+        },
+        "five": {
+            "price": 10000000
+        }
     }
 }

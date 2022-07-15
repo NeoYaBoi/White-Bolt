@@ -20,7 +20,6 @@ export default {
   description: `Gets your daily amount of ${currency}`,
   slash: "both",
   guildOnly: true,
-  testOnly: true,
   cooldown: "1d",
   callback: async ({ interaction, message, member }) => {
     let ranBeg = Math.floor(Math.random() * dailySays.length);
