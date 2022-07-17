@@ -1,5 +1,5 @@
 import { ICommand } from "wokcommands";
-import { currency } from '../../config.json'
+import { currency } from "../../config.json";
 const userSchema = require("../../schemas/userSchema");
 
 export default {
@@ -23,6 +23,12 @@ export default {
       return {
         custom: true,
         content: "You must specify a valid amount.",
+        ephemeral: true,
+      };
+    if (member.id == user?.id)
+      return {
+        custom: true,
+        content: "You cannot give money to yourself.",
         ephemeral: true,
       };
     const senderResult = await userSchema.findOne({ _id: member.id });
@@ -49,10 +55,10 @@ export default {
       sedToSet = senderResult.money - amount;
     }
     //checking if receiver is in database or not
-    if(!receiverResult || !receiverResult.money) {
-        recToSet = 1000 + amount
+    if (!receiverResult || !receiverResult.money) {
+      recToSet = 1000 + amount;
     } else {
-        recToSet = receiverResult.money + amount
+      recToSet = receiverResult.money + amount;
     }
     //setting sender money amount
     await userSchema.findOneAndUpdate(
@@ -68,17 +74,17 @@ export default {
     );
     //setting receiver money amount
     await userSchema.findOneAndUpdate(
-        {
-          _id: user?.id,
-        },
-        {
-          money: recToSet,
-        },
-        {
-          upsert: true,
-        }
-      );
+      {
+        _id: user?.id,
+      },
+      {
+        money: recToSet,
+      },
+      {
+        upsert: true,
+      }
+    );
     //returning content
-    return `You gave ${amount} ${currency} to ${user?.username}`
+    return `You gave ${amount} ${currency} to ${user?.username}`;
   },
 } as ICommand;

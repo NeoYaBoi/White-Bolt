@@ -35,6 +35,12 @@ exports.default = {
                 content: "You must specify a valid amount.",
                 ephemeral: true,
             };
+        if (member.id == (user === null || user === void 0 ? void 0 : user.id))
+            return {
+                custom: true,
+                content: "You cannot give money to yourself.",
+                ephemeral: true,
+            };
         const senderResult = yield userSchema.findOne({ _id: member.id });
         const receiverResult = yield userSchema.findOne({ _id: user === null || user === void 0 ? void 0 : user.id });
         let toGive = amount;

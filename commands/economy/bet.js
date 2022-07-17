@@ -12,6 +12,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const discord_js_1 = require("discord.js");
 const config_json_1 = require("../../config.json");
 const userSchema = require("../../schemas/userSchema");
+function number_test(n) {
+    var result = n - Math.floor(n) !== 0;
+    if (result)
+        return "true";
+    else
+        return "false";
+}
 exports.default = {
     name: "bet",
     category: "Economy",
@@ -22,7 +29,35 @@ exports.default = {
     slash: "both",
     expectedArgsTypes: ["NUMBER"],
     callback: ({ interaction, message, member, args, prefix, guild, instance, }) => __awaiter(void 0, void 0, void 0, function* () {
-        let amount = message ? args[0] : interaction.options.getNumber("amount");
+        let amount;
+        if (message) {
+            amount = args[0];
+            if ((amount === null || amount === void 0 ? void 0 : amount.includes(".")) ||
+                (amount === null || amount === void 0 ? void 0 : amount.includes("-")) ||
+                (amount === null || amount === void 0 ? void 0 : amount.includes("0"))) {
+                return {
+                    custom: true,
+                    content: "You must specify a valid number.",
+                };
+            }
+        }
+        else {
+            amount = interaction.options.getNumber("amount");
+            const numTest = number_test(amount);
+            if (numTest == "true" || amount == 0)
+                return {
+                    custom: true,
+                    content: "You must specify a valid number.",
+                    ephemeral: true,
+                };
+            const negOrNot = Math.sign(amount);
+            if (negOrNot != 1)
+                return {
+                    custom: true,
+                    content: "You must specify a valid number.",
+                    ephemeral: true,
+                };
+        }
         let amountToSet;
         let wOrL;
         let dILose;

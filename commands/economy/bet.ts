@@ -3,6 +3,12 @@ import { MessageEmbed } from "discord.js";
 import { ApplicationCommandOptionTypes } from "discord.js/typings/enums";
 import { currency } from "../../config.json";
 const userSchema = require("../../schemas/userSchema");
+function number_test(n: number) {
+  var result = n - Math.floor(n) !== 0;
+
+  if (result) return "true";
+  else return "false";
+}
 
 export default {
   name: "bet",
@@ -22,14 +28,44 @@ export default {
     guild,
     instance,
   }) => {
-    let amount = message ? args[0]! : interaction.options.getNumber("amount")!;
+    let amount;
+    if (message) {
+      amount = args[0];
+      if (
+        amount?.includes(".") ||
+        amount?.includes("-") ||
+        amount?.includes("0")
+      ) {
+        return {
+          custom: true,
+          content: "You must specify a valid number.",
+        };
+      }
+    } else {
+      amount = interaction.options.getNumber("amount")!;
+      const numTest = number_test(amount);
+      if (numTest == "true" || amount == 0)
+        return {
+          custom: true,
+          content: "You must specify a valid number.",
+          ephemeral: true,
+        };
+      const negOrNot = Math.sign(amount);
+      if (negOrNot != 1)
+        return {
+          custom: true,
+          content: "You must specify a valid number.",
+          ephemeral: true,
+        };
+    }
     let amountToSet;
     let wOrL;
     let dILose;
     let embed = new MessageEmbed();
     const coinFlp = Math.floor(Math.random() * 2) + 1;
     const userResult = await userSchema.findOne({ _id: member.id });
-    if(interaction) prefix = "/"
+
+    if (interaction) prefix = "/";
     if (!userResult || !userResult.money)
       return {
         custom: true,
@@ -59,7 +95,7 @@ export default {
       //WIN
       amountToSet = userResult.money + parseFloat(args[0]);
       wOrL = "WIN";
-      dILose = "You just won"
+      dILose = "You just won";
       embed
         .setColor("GREEN")
         .setThumbnail(
