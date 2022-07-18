@@ -85,14 +85,17 @@ client.on("ready", () => {
             emoji: "🪙",
         },
         {
+            name: "Profile",
+            emoji: "😐",
+        },
+        {
             name: "Owner",
             emoji: "💀",
             hidden: true,
         },
         {
             name: "Staff",
-            emoji: "<:SEVE:985474827647352852>",
-            hidden: true,
+            emoji: "<:9445blurplestaff:995514804980686848>",
         },
     ])
         .setDefaultPrefix("%")

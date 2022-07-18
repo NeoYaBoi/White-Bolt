@@ -2,10 +2,8 @@ import { ICommand } from "wokcommands";
 import { MessageEmbed } from "discord.js";
 import {
   ApplicationCommandOptionTypes,
-  MembershipStates,
 } from "discord.js/typings/enums";
 import { levels } from "../../items.json";
-const itemSchema = require("../../schemas/itemSchema");
 const userSchema = require("../../schemas/userSchema");
 
 export default {

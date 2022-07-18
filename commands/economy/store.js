@@ -5,7 +5,7 @@ const items_json_1 = require("../../items.json");
 const config_json_1 = require("../../config.json");
 exports.default = {
     name: 'store',
-    names: ['store', 'shop', 'supermarket', 'isle3', 's'],
+    names: ['store', 'shop', 's'],
     category: 'Economy',
     description: 'Gets the current store.',
     slash: 'both',

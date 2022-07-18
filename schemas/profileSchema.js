@@ -1,19 +1,19 @@
 const mongoose = require("mongoose");
-const reqString = {
-  type: String,
-  required: true,
-};
 
 const profileSchema = mongoose.Schema({
   _id: {
-    reqString
-  }, 
+    type: String,
+    default: "N/A",
+    required: true,
+  },
   embedColor: {
-    reqString
+    type: String,
+    required: true
   },
   age: {
-    type: Number,
-    required: true
+    type: String,
+    default: "N/A",
+    required: true,
   },
   ageLock: {
     type: String,
@@ -21,13 +21,23 @@ const profileSchema = mongoose.Schema({
     required: true
   },
   sexuality: {
-    reqString
+    type: String,
+    default: "N/A",
+    required: true,
   },
   gender: {
-    reqString
+    type: String,
+    default: "N/A",
+    required: true,
+  },
+  banner: {
+    type: String,
+    required: true,
   },
   visible: {
-    reqString
+    type: String,
+    default: "true",
+    required: true
   }
 });
 

@@ -6,7 +6,7 @@ import { currency } from '../../config.json'
 
 export default {
     name: 'store',
-    names: ['store', 'shop', 'supermarket', 'isle3', 's'],
+    names: ['store', 'shop', 's'],
     category: 'Economy',
     description: 'Gets the current store.',
     slash: 'both',

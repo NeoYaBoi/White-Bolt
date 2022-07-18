@@ -11,7 +11,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const discord_js_1 = require("discord.js");
 const items_json_1 = require("../../items.json");
-const itemSchema = require("../../schemas/itemSchema");
 const userSchema = require("../../schemas/userSchema");
 exports.default = {
     name: "buy",
