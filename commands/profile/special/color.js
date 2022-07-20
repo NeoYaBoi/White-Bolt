@@ -85,7 +85,7 @@ exports.default = {
             };
         }
         const userResult = yield userSchema.findOne({ _id: user.id });
-        if (!userResult || !userResult.level || userResult.level != specialCmdLevel) {
+        if (!userResult || !userResult.level || userResult.level <= specialCmdLevel) {
             return {
                 custom: true,
                 content: "You are not of the required level.",

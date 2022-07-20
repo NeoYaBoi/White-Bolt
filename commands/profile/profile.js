@@ -76,8 +76,8 @@ exports.default = {
                 value: "**Custom**"
             },
             {
-                name: "😐 Preferred Name",
-                value: `Name Here`,
+                name: "😐 Name",
+                value: profile ? profile.name : "N/A",
                 inline: true,
             },
             {
@@ -90,9 +90,17 @@ exports.default = {
                 value: profile ? profile.sexuality : "N/A",
                 inline: true
             },
+            {
+                name: "Gender",
+                value: profile ? profile.gender : "N/A",
+                inline: true
+            }
         ]);
         if (profile && profile.banner) {
             embed.setImage(profile.banner);
+        }
+        if (profile && profile.thumbnail) {
+            embed.setThumbnail(profile.thumbnail);
         }
         if (profile && profile.embedColor) {
             if (profile.embedColor == "BLUE") {

@@ -18,7 +18,7 @@ exports.default = {
     callback: ({ interaction, message, }) => __awaiter(void 0, void 0, void 0, function* () {
         const row = new discord_js_1.MessageActionRow().addComponents(new discord_js_1.MessageButton()
             .setLabel("Invite")
-            .setURL("https://discord.com/api/oauth2/authorize?client_id=800106088720629790&permissions=8&scope=bot%20applications.commands")
+            .setURL("https://discord.com/api/oauth2/authorize?client_id=995519159268016169&permissions=8&scope=bot+applications.commands")
             .setStyle("LINK"));
         return {
             custom: true,

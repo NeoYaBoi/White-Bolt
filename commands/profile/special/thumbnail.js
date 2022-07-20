@@ -9,32 +9,48 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const profileSchema = require('../../schemas/profileSchema');
+const discord_js_1 = require("discord.js");
+const profileSchema = require('../../../schemas/profileSchema');
+const { specialCmdLevel } = require('../../../config.json');
 exports.default = {
-    name: 'name',
+    name: 'thumbnail',
+    names: ['thumbnail', 'thumb'],
     category: 'Profile',
-    description: 'Changes your preferred name for your profile.',
-    expectedArgs: '<name>',
+    description: 'Changes the thumbnail on your profile',
+    expectedArgs: '<thumbnail>',
     minArgs: 1,
     slash: 'both',
     testOnly: true,
     expectedArgsTypes: ['STRING'],
     callback: ({ interaction, message, args, user }) => __awaiter(void 0, void 0, void 0, function* () {
-        let name = message ? args[0] : interaction.options.getString('name');
-        if ((name === null || name === void 0 ? void 0 : name.length) >= 15) {
+        let thumbnail = message ? args[0] : interaction.options.getString('thumbnail');
+        if (!thumbnail.startsWith('http://') && !thumbnail.startsWith('https://')) {
             return {
                 custom: true,
-                content: "Your name must be under 15 characters.",
+                content: "This is not a valid thumbnail.",
+                ephemeral: true,
+            };
+        }
+        const profileResult = yield profileSchema.findOne({ _id: user.id });
+        if (!profileResult || (profileResult.level && profileResult.level <= specialCmdLevel)) {
+            return {
+                custom: true,
+                content: "You are not of the required level.",
                 ephemeral: true,
             };
         }
         yield profileSchema.findOneAndUpdate({
             _id: user.id
         }, {
-            name: name
+            thumbnail: thumbnail
         }, {
             upsert: true
         });
-        return `Your new preferred name is set to ${name}`;
+        let embed = new discord_js_1.MessageEmbed()
+            .setTitle("New Thumbnail")
+            .setDescription("Your new thumbnail has been set to")
+            .setImage(thumbnail)
+            .setColor('WHITE');
+        return embed;
     }),
 };

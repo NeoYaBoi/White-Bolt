@@ -15,7 +15,7 @@ export default {
       new MessageButton()
         .setLabel("Invite")
         .setURL(
-          "https://discord.com/api/oauth2/authorize?client_id=800106088720629790&permissions=8&scope=bot%20applications.commands"
+          "https://discord.com/api/oauth2/authorize?client_id=995519159268016169&permissions=8&scope=bot+applications.commands"
         )
         .setStyle("LINK")
     );

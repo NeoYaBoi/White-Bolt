@@ -34,6 +34,15 @@ const profileSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  thumbnail: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    default: "true",
+    require: true
+  },
   visible: {
     type: String,
     default: "true",
