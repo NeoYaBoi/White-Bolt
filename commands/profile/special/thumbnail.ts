@@ -12,7 +12,7 @@ export default {
     expectedArgs: '<thumbnail>',
     minArgs: 1,
     slash: 'both',
-    testOnly: true,
+    cooldown: '1d',
     expectedArgsTypes: ['STRING'],
     callback: async ({ interaction, message, args, user }) => {
         let thumbnail = message ? args[0] : interaction.options.getString('thumbnail')!

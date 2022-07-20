@@ -20,7 +20,7 @@ exports.default = {
     expectedArgs: '<thumbnail>',
     minArgs: 1,
     slash: 'both',
-    testOnly: true,
+    cooldown: '1d',
     expectedArgsTypes: ['STRING'],
     callback: ({ interaction, message, args, user }) => __awaiter(void 0, void 0, void 0, function* () {
         let thumbnail = message ? args[0] : interaction.options.getString('thumbnail');

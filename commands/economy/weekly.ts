@@ -86,6 +86,11 @@ export default {
           .setThumbnail(
             "https://cdn.discordapp.com/attachments/995514908584189973/997049483244351579/level_5.png"
           );
+      } else {
+        //level 0 gets no extra
+        muchGot = randInt
+        embed
+          .setColor("WHITE")
       }
     }
     await userSchema.findOneAndUpdate(

@@ -34,7 +34,6 @@ client.on("ready", () => {
     commandsDir: path.join(__dirname, "commands"),
     messagesPath: path.join(__dirname, "messages.json"),
     featuresDir: path.join(__dirname, 'features'),
-    typeScript: true,
     testServers: ["995514550227046452"],
     mongoUri: process.env.MONGO,
     disabledDefaultCommands: [
@@ -105,4 +104,5 @@ client.on("ready", () => {
     console.log(`===================================`);
   }, 10000);
 });
+client.setMaxListeners(0)
 client.login(process.env.TOKEN);

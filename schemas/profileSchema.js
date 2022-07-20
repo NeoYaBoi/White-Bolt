@@ -43,6 +43,16 @@ const profileSchema = mongoose.Schema({
     default: "true",
     require: true
   },
+  status: {
+    type: String,
+    default: "N/A",
+    required: true
+  },
+  pronouns: {
+    type: String,
+    default: "N/A",
+    required: true
+  },
   visible: {
     type: String,
     default: "true",

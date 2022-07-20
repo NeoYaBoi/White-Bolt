@@ -18,6 +18,7 @@ exports.default = {
     expectedArgs: "<banner>",
     minArgs: 1,
     slash: "both",
+    cooldown: '1d',
     expectedArgsTypes: ["STRING"],
     callback: ({ interaction, message, args, user }) => __awaiter(void 0, void 0, void 0, function* () {
         let banner = message ? args[0] : interaction.options.getString("banner");

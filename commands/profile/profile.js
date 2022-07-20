@@ -21,7 +21,6 @@ exports.default = {
     minArgs: 0,
     maxArgs: 1,
     slash: "both",
-    testOnly: true,
     guildOnly: true,
     expectedArgsTypes: ["USER"],
     callback: ({ interaction, message, member, args }) => __awaiter(void 0, void 0, void 0, function* () {
@@ -57,8 +56,8 @@ exports.default = {
                 value: "**Discord**"
             },
             {
-                name: "<:3815squareping:998516276446117948> Ping",
-                value: `<@${member.id}>`,
+                name: "📌 Ping",
+                value: `<@${use === null || use === void 0 ? void 0 : use.id}>`,
                 inline: true
             },
             {
@@ -86,13 +85,23 @@ exports.default = {
                 inline: true
             },
             {
-                name: "<:heto:998447620034928670> Sexuality",
+                name: "🏳️‍🌈 Sexuality",
                 value: profile ? profile.sexuality : "N/A",
                 inline: true
             },
             {
-                name: "Gender",
+                name: "🧬 Gender",
                 value: profile ? profile.gender : "N/A",
+                inline: true
+            },
+            {
+                name: "🔃 Status",
+                value: profile ? profile.status : "N/A",
+                inline: true
+            },
+            {
+                name: "💷 Pronouns",
+                value: profile ? profile.pronouns : "N/A",
                 inline: true
             }
         ]);

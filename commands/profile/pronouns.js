@@ -9,32 +9,46 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const profileSchema = require('../../schemas/profileSchema');
+const profileSchema = require("../../schemas/profileSchema");
 exports.default = {
-    name: 'name',
-    category: 'Profile',
-    description: 'Changes your preferred name for your profile.',
-    expectedArgs: '<name>',
+    name: "pronouns",
+    category: "Profile",
+    description: "Changes your pronouns on your profile",
+    expectedArgs: "<pronouns>",
     minArgs: 1,
-    slash: 'both',
-    cooldown: '1d',
-    expectedArgsTypes: ['STRING'],
+    slash: "both",
+    expectedArgsTypes: ["STRING"],
     callback: ({ interaction, message, args, user }) => __awaiter(void 0, void 0, void 0, function* () {
-        let name = message ? args[0] : interaction.options.getString('name');
-        if ((name === null || name === void 0 ? void 0 : name.length) >= 15) {
+        let pronouns = message
+            ? args[0]
+            : interaction.options.getString("pronouns");
+        if (!pronouns.includes("/")) {
             return {
                 custom: true,
-                content: "Your name must be under 15 characters.",
+                content: "These are not valid pronouns.",
                 ephemeral: true,
             };
         }
+        let pronounArgs = pronouns.split("/");
+        if (pronounArgs[0].length >= 5 || pronounArgs[1].length >= 5)
+            return {
+                custom: true,
+                content: "Your pronouns are to long.",
+                ephemeral: true,
+            };
+        if (pronounArgs[2])
+            return {
+                custom: true,
+                content: "Your pronouns are to long.",
+                ephemeral: true,
+            };
         yield profileSchema.findOneAndUpdate({
-            _id: user.id
+            _id: user.id,
         }, {
-            name: name
+            pronouns: pronouns,
         }, {
-            upsert: true
+            upsert: true,
         });
-        return `Your new preferred name is set to ${name}`;
+        return `Your pronouns have now been set to ${pronouns}`;
     }),
 };
