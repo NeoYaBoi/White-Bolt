@@ -101,6 +101,7 @@ client.on("ready", () => {
         .setColor("WHITE");
     setInterval(() => {
         var _a;
+        activities_list.push(`ping = ${Math.round(client.ws.ping)}ms`);
         const indexStat = Math.floor(Math.random() * (activities_list.length - 1) + 1);
         let Set = activities_list[indexStat];
         (_a = client.user) === null || _a === void 0 ? void 0 : _a.setPresence({

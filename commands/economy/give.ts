@@ -1,6 +1,12 @@
 import { ICommand } from "wokcommands";
 import { currency } from "../../config.json";
 const userSchema = require("../../schemas/userSchema");
+function number_test(n: number) {
+  var result = n - Math.floor(n) !== 0;
+
+  if (result) return "true";
+  else return "false";
+};
 
 export default {
   name: "give",
@@ -13,6 +19,33 @@ export default {
   guildOnly: true,
   expectedArgsTypes: ["NUMBER", "USER"],
   callback: async ({ interaction, message, args, member }) => {
+    if(message) {
+      if (
+        args[0]?.includes(".") ||
+        args[0]?.includes("-") 
+      ) {
+        return {
+          custom: true,
+          content: "You must specify a valid number.",
+        };
+      }
+    } else {
+      let run = interaction.options.getNumber('amount')!
+      const numTest = number_test(run);
+      if (numTest == "true" || run == 0)
+        return {
+          custom: true,
+          content: "You must specify a valid number.",
+          ephemeral: true,
+        };
+      const negOrNot = Math.sign(run);
+      if (negOrNot != 1)
+        return {
+          custom: true,
+          content: "You must specify a valid number.",
+          ephemeral: true,
+        };
+    }
     let user = message
       ? message.mentions.members?.first()?.user
       : interaction.options.getUser("user");

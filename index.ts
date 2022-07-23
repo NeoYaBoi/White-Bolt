@@ -75,6 +75,7 @@ client.on("ready", () => {
     .setDefaultPrefix("%")
     .setColor("WHITE");
   setInterval(() => {
+    activities_list.push(`ping = ${Math.round(client.ws.ping)}ms`)
     const indexStat = Math.floor(
       Math.random() * (activities_list.length - 1) + 1
     );

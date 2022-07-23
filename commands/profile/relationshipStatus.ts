@@ -57,6 +57,6 @@ export default {
             upsert: true
         }
     )
-    return `Your new relationship status has been set to ${status}`
+    return `Your new relationship status has been set to **${status}**`
   },
 } as ICommand;

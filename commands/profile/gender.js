@@ -13,7 +13,7 @@ const profileSchema = require('../../schemas/profileSchema');
 exports.default = {
     name: 'gender',
     category: 'Profile',
-    description: 'Changes your pofile gender',
+    description: 'Changes your profile gender',
     expectedArgs: '<gender>',
     minArgs: 1,
     slash: 'both',

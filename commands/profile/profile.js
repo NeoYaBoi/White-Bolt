@@ -23,20 +23,21 @@ exports.default = {
     slash: "both",
     guildOnly: true,
     expectedArgsTypes: ["USER"],
-    callback: ({ interaction, message, member, args }) => __awaiter(void 0, void 0, void 0, function* () {
+    callback: ({ interaction, message, user, args }) => __awaiter(void 0, void 0, void 0, function* () {
         var _a;
         let use;
-        if (message && args[0] && ((_a = message.mentions.members) === null || _a === void 0 ? void 0 : _a.first())) {
-            use = message.mentions.members.first();
+        console.log(interaction.options.data.length);
+        if (message && args[0] && ((_a = message.mentions.users) === null || _a === void 0 ? void 0 : _a.first())) {
+            use = message.mentions.users.first();
         }
         else if (interaction && interaction.options.data.length == 1) {
-            interaction.options.getMember("user");
+            use = interaction.options.getUser("user");
         }
         else {
-            use = member;
+            use = user;
         }
         let profile = yield profileSchema.findOne({ _id: use === null || use === void 0 ? void 0 : use.id });
-        if (profile && profile.visible == "false" && (member === null || member === void 0 ? void 0 : member.id) != profile._id) {
+        if (profile && profile.visible == "false" && (user === null || user === void 0 ? void 0 : user.id) != profile._id) {
             return {
                 custom: true,
                 content: "This user has disabled there profile visibility.",
@@ -45,10 +46,10 @@ exports.default = {
         }
         const embed = new discord_js_1.MessageEmbed();
         if (use) {
-            embed.setAuthor(use === null || use === void 0 ? void 0 : use.displayName, use.displayAvatarURL({ format: "jpg", dynamic: true }));
+            embed.setAuthor(use === null || use === void 0 ? void 0 : use.username, use.displayAvatarURL({ format: "jpg", dynamic: true }));
         }
         embed
-            .setDescription(`This is ${use === null || use === void 0 ? void 0 : use.displayName}'s White Bolt profile`)
+            .setDescription(`This is *${use === null || use === void 0 ? void 0 : use.tag}'s* White Bolt profile`)
             .setColor("WHITE")
             .addFields([
             {
@@ -62,7 +63,7 @@ exports.default = {
             },
             {
                 name: "📛 Nickname",
-                value: (use === null || use === void 0 ? void 0 : use.nickname) || "N/A",
+                value: "``Disabled``",
                 inline: true,
             },
             {
@@ -76,32 +77,32 @@ exports.default = {
             },
             {
                 name: "😐 Name",
-                value: profile ? profile.name : "N/A",
+                value: profile ? profile.name : "null",
                 inline: true,
             },
             {
                 name: "🧓 Age",
-                value: profile ? profile.age + " years" : "N/A",
+                value: profile ? profile.age + " years" : "null",
                 inline: true
             },
             {
                 name: "🏳️‍🌈 Sexuality",
-                value: profile ? profile.sexuality : "N/A",
+                value: profile ? profile.sexuality : "null",
                 inline: true
             },
             {
                 name: "🧬 Gender",
-                value: profile ? profile.gender : "N/A",
+                value: profile ? profile.gender : "null",
                 inline: true
             },
             {
-                name: "🔃 Status",
-                value: profile ? profile.status : "N/A",
+                name: "<:bcccremovebgpreview:999267573755559946> Status",
+                value: profile ? profile.status : "null",
                 inline: true
             },
             {
                 name: "💷 Pronouns",
-                value: profile ? profile.pronouns : "N/A",
+                value: profile ? profile.pronouns : "null",
                 inline: true
             }
         ]);

@@ -69,6 +69,6 @@ exports.default = {
         }, {
             upsert: true
         });
-        return "New age set!";
+        return `Your new age has been set to **${age}**`;
     }),
 };

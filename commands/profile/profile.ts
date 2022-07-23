@@ -15,17 +15,18 @@ export default {
   slash: "both",
   guildOnly: true,
   expectedArgsTypes: ["USER"],
-  callback: async ({ interaction, message, member, args }) => {
+  callback: async ({ interaction, message, user, args }) => {
     let use;
-    if (message && args[0] && message.mentions.members?.first()) {
-      use = message.mentions.members.first()!;
+    console.log(interaction.options.data.length)
+    if (message && args[0] && message.mentions.users?.first()) {
+      use = message.mentions.users.first()!;
     } else if (interaction && interaction.options.data.length == 1) {
-      interaction.options.getMember("user");
+      use = interaction.options.getUser("user");
     } else {
-      use = member;
+      use = user;
     }
     let profile = await profileSchema.findOne({ _id: use?.id });
-    if (profile && profile.visible == "false" && member?.id != profile._id) {
+    if (profile && profile.visible == "false" && user?.id != profile._id) {
       return {
         custom: true,
         content: "This user has disabled there profile visibility.",
@@ -35,12 +36,12 @@ export default {
     const embed = new MessageEmbed();
     if (use) {
       embed.setAuthor(
-        use?.displayName,
+        use?.username,
         use.displayAvatarURL({ format: "jpg", dynamic: true })
       );
     }
     embed
-    .setDescription(`This is ${use?.displayName}'s White Bolt profile`)
+    .setDescription(`This is *${use?.tag}'s* White Bolt profile`)
     .setColor("WHITE")
     .addFields([
       {
@@ -54,7 +55,7 @@ export default {
       },
       {
         name: "📛 Nickname",
-        value: use?.nickname || "N/A",
+        value: "``Disabled``",
         inline: true,
       },
       {
@@ -68,32 +69,32 @@ export default {
       },
       {
         name: "😐 Name",
-        value: profile ? profile.name : "N/A",
+        value: profile ? profile.name : "null",
         inline: true,
       },
       {
         name: "🧓 Age",
-        value: profile ? profile.age + " years" : "N/A",
+        value: profile ? profile.age + " years" : "null",
         inline: true
       },
       {
         name: "🏳️‍🌈 Sexuality",
-        value: profile ? profile.sexuality : "N/A",
+        value: profile ? profile.sexuality : "null",
         inline: true
       },
       {
         name: "🧬 Gender",
-        value: profile ? profile.gender : "N/A",
+        value: profile ? profile.gender : "null",
         inline: true
       },
       {
-        name: "🔃 Status",
-        value: profile ? profile.status : "N/A",
+        name: "<:bcccremovebgpreview:999267573755559946> Status",
+        value: profile ? profile.status : "null",
         inline: true
       },
       {
         name: "💷 Pronouns",
-        value: profile ? profile.pronouns : "N/A",
+        value: profile ? profile.pronouns : "null",
         inline: true
       }
     ]);

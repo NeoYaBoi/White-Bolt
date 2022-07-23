@@ -11,6 +11,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const config_json_1 = require("../../config.json");
 const userSchema = require("../../schemas/userSchema");
+function number_test(n) {
+    var result = n - Math.floor(n) !== 0;
+    if (result)
+        return "true";
+    else
+        return "false";
+}
+;
 exports.default = {
     name: "give",
     aliases: ["give", "g"],
@@ -22,9 +30,35 @@ exports.default = {
     guildOnly: true,
     expectedArgsTypes: ["NUMBER", "USER"],
     callback: ({ interaction, message, args, member }) => __awaiter(void 0, void 0, void 0, function* () {
-        var _a, _b;
+        var _a, _b, _c, _d;
+        if (message) {
+            if (((_a = args[0]) === null || _a === void 0 ? void 0 : _a.includes(".")) ||
+                ((_b = args[0]) === null || _b === void 0 ? void 0 : _b.includes("-"))) {
+                return {
+                    custom: true,
+                    content: "You must specify a valid number.",
+                };
+            }
+        }
+        else {
+            let run = interaction.options.getNumber('amount');
+            const numTest = number_test(run);
+            if (numTest == "true" || run == 0)
+                return {
+                    custom: true,
+                    content: "You must specify a valid number.",
+                    ephemeral: true,
+                };
+            const negOrNot = Math.sign(run);
+            if (negOrNot != 1)
+                return {
+                    custom: true,
+                    content: "You must specify a valid number.",
+                    ephemeral: true,
+                };
+        }
         let user = message
-            ? (_b = (_a = message.mentions.members) === null || _a === void 0 ? void 0 : _a.first()) === null || _b === void 0 ? void 0 : _b.user
+            ? (_d = (_c = message.mentions.members) === null || _c === void 0 ? void 0 : _c.first()) === null || _d === void 0 ? void 0 : _d.user
             : interaction.options.getUser("user");
         let amount = message
             ? parseFloat(args[0])

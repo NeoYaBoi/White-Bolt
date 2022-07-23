@@ -106,6 +106,6 @@ exports.default = {
         }, {
             upsert: true
         });
-        return `Your new embed colour was set to ${RealColor.toLowerCase()}`;
+        return `Your new embed colour was set to **${RealColor.toLowerCase()}**`;
     }),
 };

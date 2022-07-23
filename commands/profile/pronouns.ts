@@ -46,6 +46,6 @@ export default {
         upsert: true,
       }
     );
-    return `Your pronouns have now been set to ${pronouns}`;
+    return `Your pronouns have now been set to **${pronouns}**`;
   },
 } as ICommand;

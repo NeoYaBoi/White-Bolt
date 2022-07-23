@@ -33,8 +33,7 @@ export default {
       amount = args[0];
       if (
         amount?.includes(".") ||
-        amount?.includes("-") ||
-        amount?.includes("0")
+        amount?.includes("-") 
       ) {
         return {
           custom: true,

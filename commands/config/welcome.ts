@@ -1,5 +1,4 @@
 import { ICommand } from "wokcommands";
-import { MessageEmbed } from "discord.js";
 import { ApplicationCommandOptionTypes } from "discord.js/typings/enums";
 const welcomeSchema = require("../../schemas/welcomeSchema");
 

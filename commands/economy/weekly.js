@@ -87,12 +87,12 @@ exports.default = {
                     .setColor("#a084a3")
                     .setThumbnail("https://cdn.discordapp.com/attachments/995514908584189973/997049483244351579/level_5.png");
             }
-            else {
-                //level 0 gets no extra
-                muchGot = randInt;
-                embed
-                    .setColor("WHITE");
-            }
+        }
+        else {
+            //level 0 gets no extra
+            muchGot = randInt;
+            embed
+                .setColor("WHITE");
         }
         yield userSchema.findOneAndUpdate({
             _id: user.id
@@ -101,7 +101,7 @@ exports.default = {
         }, {
             upsert: true
         });
-        embed.setDescription(`${weeklySays[ranWeek]} **${muchGot}**`);
+        embed.setDescription(`${weeklySays[ranWeek]} **${muchGot} ${config_json_1.currency}**`);
         return embed;
     }),
 };

@@ -33,8 +33,7 @@ exports.default = {
         if (message) {
             amount = args[0];
             if ((amount === null || amount === void 0 ? void 0 : amount.includes(".")) ||
-                (amount === null || amount === void 0 ? void 0 : amount.includes("-")) ||
-                (amount === null || amount === void 0 ? void 0 : amount.includes("0"))) {
+                (amount === null || amount === void 0 ? void 0 : amount.includes("-"))) {
                 return {
                     custom: true,
                     content: "You must specify a valid number.",

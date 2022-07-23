@@ -35,6 +35,6 @@ exports.default = {
         }, {
             upsert: true
         });
-        return `Your new preferred name is set to ${name}`;
+        return `Your new preferred name is set to **${name}**`;
     }),
 };

@@ -73,6 +73,6 @@ export default {
                 upsert: true
             }
         )
-        return `Your sexuality is now set to ${sexuality}`
+        return `Your sexuality is now set to **${sexuality}**`
     },
 } as ICommand

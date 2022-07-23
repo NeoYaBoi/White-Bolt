@@ -1,6 +1,5 @@
 import { ICommand } from "wokcommands";
 import { MessageEmbed } from "discord.js";
-import { ApplicationCommandOptionTypes } from "discord.js/typings/enums";
 import { currency } from "../../config.json";
 const userSchema = require("../../schemas/userSchema");
 let weeklySays = [
@@ -86,12 +85,12 @@ export default {
           .setThumbnail(
             "https://cdn.discordapp.com/attachments/995514908584189973/997049483244351579/level_5.png"
           );
-      } else {
-        //level 0 gets no extra
-        muchGot = randInt
-        embed
-          .setColor("WHITE")
       }
+    } else {
+      //level 0 gets no extra
+      muchGot = randInt
+      embed
+        .setColor("WHITE")
     }
     await userSchema.findOneAndUpdate(
         {
@@ -104,7 +103,7 @@ export default {
             upsert: true
         }
     )
-    embed.setDescription(`${weeklySays[ranWeek]} **${muchGot}**`)
+    embed.setDescription(`${weeklySays[ranWeek]} **${muchGot} ${currency}**`)
     return embed
   },
 } as ICommand;
